@@ -27,7 +27,7 @@ void setup(void){
 
   digitalWrite(D3,LOW);//初始化洒水机默认关闭
 
-  myservo.attach(2);//设置舵机控制端所在引脚
+  myservo.attach(D5);//设置舵机控制端所在引脚
   myservo.write(10);//设置转动度数为10
   
   wifiMulti.addAP("FOREVER WIFI HUB 5 4G", "hellohello888"); // 将需要连接的一系列WiFi ID和密码输入这里
@@ -67,7 +67,7 @@ void loop(void){
 
 //测试连通
 void handleRoot() {       
-  esp8266_server.send(200, "text/plain", "测试成功");
+  esp8266_server.send(200, "text/plain", "success");
 }
 
 //获取温度
@@ -114,11 +114,13 @@ void getLiangDu(){
 
 //开灯
 void openLight(){
-
+  myservo.write(0);
+  esp8266_server.send(200, "text/plain", "OK");
 }
 //关灯
 void closeLight(){
-
+  myservo.write(180);
+  esp8266_server.send(200, "text/plain", "OK");
 }
 
 // 设置处理404情况的函数'handleNotFound'
