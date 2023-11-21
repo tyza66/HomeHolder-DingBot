@@ -96,7 +96,7 @@ void oneOpen(){
   esp8266_server.send(200, "text/plain", "OK");
 }
 
-//关闭洒水器
+//关闭设备
 void oneClose(){
   digitalWrite(D3,LOW);
   esp8266_server.send(200, "text/plain", "OK");
