@@ -21,7 +21,7 @@ void setup(void){
   Serial.begin(9600);   //启动串口通讯
   sensors.begin();      //初始化读取温度
 
-  pinMode(A0,INPUT); //模拟信号读取的引脚 用于接收土壤湿度的模拟信号
+  pinMode(A0,INPUT); //模拟信号读取的引脚 用于接收空气湿度的模拟信号
   pinMode(D3,OUTPUT); //用于控制洒水机的继电器
   pinMode(D1,INPUT);//用于检查是否存在光照
 
