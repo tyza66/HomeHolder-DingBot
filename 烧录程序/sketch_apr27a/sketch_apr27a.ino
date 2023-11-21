@@ -27,7 +27,7 @@ void setup(void){
 
   digitalWrite(D3,LOW);//初始化洒水机默认关闭
 
-  myservo.attach(D5);//设置舵机控制端所在引脚
+  myservo.attach(D5,500,2500);//设置舵机控制端所在引脚
   myservo.write(10);//设置转动度数为10
   
   wifiMulti.addAP("FOREVER WIFI HUB 5 4G", "hellohello888"); // 将需要连接的一系列WiFi ID和密码输入这里
