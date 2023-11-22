@@ -1,6 +1,7 @@
 from flask import Flask,request
 from ChatHandler import chat
 
+
 app = Flask(__name__)
 
 
@@ -17,5 +18,5 @@ def chatin():
 
 
 if __name__ == '__main__':
-    # 指定host和port
-    app.run(host='0.0.0.0', port=3096)
+    app.run('0.0.0.0', 3096)
+

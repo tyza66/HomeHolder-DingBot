@@ -1,6 +1,8 @@
 import json
 
-from DingBot import check_sig,replyOne
+from DingBot import check_sig, replyOne
+from HomeControl import get_all,get_temperature, get_humidity, get_light, one_open, one_close, light_open, light_close
+
 
 def get_data(request):
     # 第一步验证：是否是post请求
@@ -28,7 +30,24 @@ def chat(request):
     # 获取聊天内容
     chat_info = text_info['text']['content']
     # 控制机器
-    reply = erine(chat_info)
+    reply = message_handler(chat_info)
     # 发送回复内容
-    replyOne(text_info, reply)
+    if reply != 'none':
+        replyOne(text_info, reply)
     return text_info
+
+
+def message_handler(message):
+    switcher = {
+        '当前温度': get_temperature(),
+        '当前湿度': get_humidity(),
+        '当前光照': get_light(),
+        '当前室内信息': get_all(),
+        '打开用电器': one_open(),
+        '关闭用电器': one_close(),
+        '开灯': light_open(),
+        '亮灯': light_open(),
+        '闭灯': light_close(),
+        '关灯': light_close()
+    }
+    return switcher.get(message, 'none')
