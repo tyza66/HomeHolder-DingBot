@@ -2,7 +2,7 @@ import json
 
 from DingBot import check_sig, replyOne
 from HomeControl import get_all, get_temperature, get_humidity, get_light, one_open, one_close, light_open, light_close, \
-    none
+    none, get_hefeng
 
 
 def get_data(request):
@@ -55,7 +55,8 @@ def message_handler(message):
         , '关闭设备': one_close
         , '亮灯': light_open
         , '闭灯': light_close
-        , '今日天气': none #待开发
+        , '当前天气': get_hefeng
+        , '天气': get_hefeng
     }
     print(message)
     return switcher.get(message.strip(), none)()
