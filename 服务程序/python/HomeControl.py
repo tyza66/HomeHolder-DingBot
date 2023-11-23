@@ -5,23 +5,35 @@ hard_server = os.environ.get('HARD_SERVER', '')
 
 #温度
 def get_temperature():
-    response = requests.get(hard_server + '/wd')
-    response.encoding = 'utf-8'
-    print(response.text)
+    try:
+        response = requests.get("http://"+hard_server + '/wd')
+        response.encoding = 'utf-8'
+    except:
+        response = "出错了，检查主控硬件是否正常"
+        return response
+    print(response)
     return "ok"
 
 #湿度
 def get_humidity():
-    response = requests.get(hard_server + '/sd')
-    response.encoding = 'utf-8'
-    print(response.text)
+    try:
+        response = requests.get("http://" + hard_server + '/sd')
+        response.encoding = 'utf-8'
+    except:
+        response = "出错了，检查主控硬件是否正常"
+        return response
+    print(response)
     return "ok"
 
 #光照
 def get_light():
-    response = requests.get(hard_server + '/ld')
-    response.encoding = 'utf-8'
-    print(response.text)
+    try:
+        response = requests.get("http://" + hard_server + '/ld')
+        response.encoding = 'utf-8'
+    except:
+        response = "出错了，检查主控硬件是否正常"
+        return response
+    print(response)
     return "ok"
 
 #全部
@@ -30,28 +42,47 @@ def get_all():
 
 #用电器开
 def one_open():
-    response = requests.get(hard_server + '/oneOpen')
-    response.encoding = 'utf-8'
-    print(response.text)
+    try:
+        response = requests.get("http://" + hard_server + '/wo')
+        response.encoding = 'utf-8'
+    except:
+        response = "出错了，检查主控硬件是否正常"
+        return response
+    print(response)
     return "ok"
 
 #用电器关
 def one_close():
-    response = requests.get(hard_server + '/oneClose')
-    response.encoding = 'utf-8'
-    print(response.text)
+    try:
+        response = requests.get("http://" + hard_server + '/wc')
+        response.encoding = 'utf-8'
+    except:
+        response = "出错了，检查主控硬件是否正常"
+        return response
+    print(response)
     return "ok"
 
 #灯开
 def light_open():
-    response = requests.get(hard_server + '/lightOpen')
-    response.encoding = 'utf-8'
-    print(response.text)
+    try:
+        response = requests.get("http://" + hard_server + '/kd')
+        response.encoding = 'utf-8'
+    except:
+        response = "出错了，检查主控硬件是否正常"
+        return response
+    print(response)
     return "ok"
 
 #灯关
 def light_close():
-    response = requests.get(hard_server + '/lightClose')
-    response.encoding = 'utf-8'
-    print(response.text)
+    try:
+        response = requests.get("http://" + hard_server + '/gd')
+        response.encoding = 'utf-8'
+    except:
+        response = "出错了，检查主控硬件是否正常"
+        return response
+    print(response)
     return "ok"
+
+def none():
+    return "none"
