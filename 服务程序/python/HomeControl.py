@@ -1,8 +1,8 @@
 import requests
 import os
 
-hard_server = os.environ.get('HARD_SERVER', '192.168.100.106')
-location_code = os.environ.get('LOCATION_CODE', '101010100')
+hard_server = os.environ.get('HARD_SERVER', '')
+location_code = os.environ.get('LOCATION_CODE', '')
 hefeng_key = os.environ.get('HEFENG_KEY', '')
 
 #温度
@@ -34,7 +34,16 @@ def get_light():
 
 #全部
 def get_all():
-    return "ok"
+    try:
+        weather = requests.get("https://devapi.qweather.com/v7/weather/now?location="+location_code+"&key="+hefeng_key)
+        response = "外界天气信息：" + weather.json()['now']['text'] + "，" + weather.json()['now']['temp'] + "℃，" + \
+                   weather.json()['now']['windDir'] + weather.json()['now']['windScale'] + "级  \n"
+        response = response + "  \n当前室内温度：" + requests.get("http://" + hard_server + '/wd').text + "℃"
+        response = response + "  \n当前室内湿度：" + requests.get("http://" + hard_server + '/sd').text + "（空气电阻）"
+        response = response + "  \n当前室内光照：" + requests.get("http://" + hard_server + '/ld').text
+    except:
+        response = "出错了，检查主控硬件是否正常"
+    return response
 
 #用电器开
 def one_open():
@@ -57,7 +66,7 @@ def one_close():
 #灯开
 def light_open():
     try:
-        response = requests.get("http://" + hard_server + '/kd')
+        requests.get("http://" + hard_server + '/kd')
         response = "灯已开启"
     except:
         response = "出错了，检查主控硬件是否正常"
@@ -66,7 +75,7 @@ def light_open():
 #灯关
 def light_close():
     try:
-        response = requests.get("http://" + hard_server + '/gd')
+        requests.get("http://" + hard_server + '/gd')
         response = "灯已关闭"
     except:
         response = "出错了，检查主控硬件是否正常"

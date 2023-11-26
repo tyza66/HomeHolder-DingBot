@@ -48,6 +48,7 @@ def message_handler(message):
         , '湿度': get_humidity
         , '当前光照': get_light
         , '光照': get_light
+        , '亮度': get_light
         , '播报信息': get_all
         , '开灯': light_open
         , '关灯': light_close
@@ -57,6 +58,7 @@ def message_handler(message):
         , '闭灯': light_close
         , '当前天气': get_hefeng
         , '天气': get_hefeng
+        , '播报': get_all
     }
     print(message)
     return switcher.get(message.strip(), none)()

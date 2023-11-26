@@ -1,7 +1,7 @@
 from flask import Flask, request
 from ChatHandler import chat
 from flask_apscheduler import APScheduler
-from Schedule import sendAll
+from Schedule import sendAll,start
 
 app = Flask(__name__)
 app.config['SCHEDULER_API_ENABLED'] = True
@@ -35,4 +35,5 @@ def chatin():
 
 
 if __name__ == '__main__':
+    start()
     app.run('0.0.0.0', 3088)

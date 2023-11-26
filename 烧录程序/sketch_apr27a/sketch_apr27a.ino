@@ -28,7 +28,7 @@ void setup(void){
   digitalWrite(D3,LOW);//初始化洒水机默认关闭
 
   myservo.attach(D5,500,2500);//设置舵机控制端所在引脚和舵机信号位的频率范围（单位：μs）
-  myservo.write(1);//设置转动度数为10
+  myservo.write(15);//设置转动度数为10
   
   wifiMulti.addAP("FOREVER WIFI HUB 5 4G", "hellohello888"); // 将需要连接的一系列WiFi ID和密码输入这里
   Serial.println("Connecting ...");                            // 则尝试使用此处存储的密码进行连接。
@@ -114,12 +114,12 @@ void getLiangDu(){
 
 //开灯
 void openLight(){
-  myservo.write(1);
+  myservo.write(42);
   esp8266_server.send(200, "text/plain", "OK");
 }
 //关灯
 void closeLight(){
-  myservo.write(89);
+  myservo.write(18);
   esp8266_server.send(200, "text/plain", "OK");
 }
 
